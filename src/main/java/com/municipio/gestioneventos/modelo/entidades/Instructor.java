@@ -1,7 +1,12 @@
 package com.municipio.gestioneventos.modelo.entidades;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "instructores")
 public class Instructor extends Persona {
 
+    @Column(name = "area_especializacion")
     private String areaEspecializacion;
 
     public Instructor() {}

@@ -1,10 +1,25 @@
 package com.municipio.gestioneventos.modelo.entidades;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "personas")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Persona {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "nombre_completo", nullable = false)
     private String nombreCompleto;
+
+    @Column(nullable = false, unique = true)
     private String dni;
+
     private String telefono;
+
+    @Column(name = "correo_electronico")
     private String correoElectronico;
 
     public Persona() {}
@@ -16,7 +31,7 @@ public abstract class Persona {
                 " | Email: " + correoElectronico;
     }
 
-    // Getters y Setters
+    public Long getId() { return id; }
     public String getNombreCompleto() { return nombreCompleto; }
     public void setNombreCompleto(String nombreCompleto) { this.nombreCompleto = nombreCompleto; }
     public String getDni() { return dni; }

@@ -1,9 +1,18 @@
 package com.municipio.gestioneventos.modelo.entidades;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "talleres")
 public class Taller extends Evento {
 
+    @Column(name = "cupo_maximo")
     private int cupoMaximo;
+
     private String modalidad;
+
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
     public Taller() {}

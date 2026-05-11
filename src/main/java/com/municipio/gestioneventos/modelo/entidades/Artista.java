@@ -1,7 +1,12 @@
 package com.municipio.gestioneventos.modelo.entidades;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "artistas")
 public class Artista extends Persona {
 
+    @Column(name = "genero_musical")
     private String generoMusical;
 
     public Artista() {}
