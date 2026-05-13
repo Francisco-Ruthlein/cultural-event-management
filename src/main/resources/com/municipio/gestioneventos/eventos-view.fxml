@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.municipio.gestioneventos.controlador.EventosControlador"
+      spacing="16" style="-fx-padding: 0;">
+
+    <!-- Barra de acciones -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="+ Nuevo Evento"
+                onAction="#nuevoEvento"
+                style="-fx-background-color: #185FA5; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+        <TextField fx:id="campoBusqueda"
+                   promptText="Buscar evento..."
+                   style="-fx-font-size: 13px;"
+                   prefWidth="200"/>
+        <Button text="Buscar"
+                onAction="#buscarEvento"
+                style="-fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- Tabla de eventos -->
+    <TableView fx:id="tablaEventos" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200"/>
+            <TableColumn fx:id="colTipo" text="Tipo" prefWidth="120"/>
+            <TableColumn fx:id="colFecha" text="Fecha inicio" prefWidth="120"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
+            <TableColumn fx:id="colParticipantes" text="Participantes" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <!-- Botones de acción -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Editar"
+                onAction="#editarEvento"
+                style="-fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+        <Button text="Cambiar estado"
+                onAction="#cambiarEstado"
+                style="-fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+        <Button text="Eliminar"
+                onAction="#eliminarEvento"
+                style="-fx-background-color: #E24B4A; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+</VBox>
