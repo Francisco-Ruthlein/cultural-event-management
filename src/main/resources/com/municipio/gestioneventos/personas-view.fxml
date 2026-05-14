@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.municipio.gestioneventos.controlador.PersonasControlador"
+      spacing="16" style="-fx-padding: 0;">
+
+    <!-- Barra de acciones -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="+ Nueva Persona"
+                onAction="#nuevaPersona"
+                style="-fx-background-color: #185FA5; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+        <TextField fx:id="campoBusqueda"
+                   promptText="Buscar persona..."
+                   style="-fx-font-size: 13px;"
+                   prefWidth="200"/>
+        <Button text="Buscar"
+                onAction="#buscarPersona"
+                style="-fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- Tabla de personas -->
+    <TableView fx:id="tablaPersonas" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colNombre" text="Nombre completo" prefWidth="200"/>
+            <TableColumn fx:id="colDni" text="DNI" prefWidth="100"/>
+            <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="120"/>
+            <TableColumn fx:id="colEmail" text="Email" prefWidth="180"/>
+            <TableColumn fx:id="colRol" text="Rol" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <!-- Botones de acción -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Editar"
+                onAction="#editarPersona"
+                style="-fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+        <Button text="Eliminar"
+                onAction="#eliminarPersona"
+                style="-fx-background-color: #E24B4A; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+</VBox>
