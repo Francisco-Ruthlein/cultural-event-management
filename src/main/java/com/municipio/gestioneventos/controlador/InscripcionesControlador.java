@@ -15,7 +15,7 @@ public class InscripcionesControlador {
     @FXML private TableColumn<Participante, String> colEmail;
     @FXML private TableColumn<Participante, String> colTelefono;
 
-    private GestorEventos gestor = new GestorEventos();
+    private GestorEventos gestor =  GestorEventos.getInstancia();
 
     @FXML
     public void initialize() {

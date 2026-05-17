@@ -19,7 +19,7 @@ public class CalendarioControlador {
     @FXML private ComboBox<String> comboMes;
     @FXML private ComboBox<String> comboEstado;
 
-    private GestorEventos gestor = new GestorEventos();
+    private GestorEventos gestor = GestorEventos.getInstancia();
     private List<Evento> todosLosEventos;
 
     @FXML

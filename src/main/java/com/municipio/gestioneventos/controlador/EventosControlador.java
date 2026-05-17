@@ -16,7 +16,7 @@ public class EventosControlador {
     @FXML private TableColumn<Evento, String> colParticipantes;
     @FXML private TextField campoBusqueda;
 
-    private GestorEventos gestor = new GestorEventos();
+    private GestorEventos gestor =  GestorEventos.getInstancia();
 
     @FXML
     public void initialize() {

@@ -16,7 +16,7 @@ public class PersonasControlador {
     @FXML private TableColumn<Persona, String> colRol;
     @FXML private TextField campoBusqueda;
 
-    private GestorEventos gestor = new GestorEventos();
+    private GestorEventos gestor =  GestorEventos.getInstancia();
 
     @FXML
     public void initialize() {
