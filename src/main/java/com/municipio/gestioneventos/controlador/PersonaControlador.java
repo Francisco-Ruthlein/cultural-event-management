@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PersonaControlador {
 
-    private GestorEventos gestor = new GestorEventos();
+    private GestorEventos gestor = GestorEventos.getInstancia();
 
     // CREAR persona
     @FXML

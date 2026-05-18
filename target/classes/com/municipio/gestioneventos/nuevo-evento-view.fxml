@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.municipio.gestioneventos.controlador.NuevoEventoControlador"
+      spacing="16" style="-fx-padding: 0;">
+
+    <!-- Tipo de evento -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Tipo de evento:" style="-fx-font-size: 13px;"/>
+        <ComboBox fx:id="comboTipo"
+                  promptText="Seleccioná el tipo"
+                  prefWidth="200"
+                  onAction="#mostrarCamposEspecificos"/>
+    </HBox>
+
+    <!-- Campos comunes -->
+    <GridPane hgap="16" vgap="10">
+        <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"
+               style="-fx-font-size: 13px;"/>
+        <TextField fx:id="campoNombre" promptText="Nombre del evento"
+                   prefWidth="250"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Fecha inicio:" GridPane.rowIndex="1" GridPane.columnIndex="0"
+               style="-fx-font-size: 13px;"/>
+        <DatePicker fx:id="campoFecha"
+                    GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Duración (días):" GridPane.rowIndex="2" GridPane.columnIndex="0"
+               style="-fx-font-size: 13px;"/>
+        <TextField fx:id="campoDuracion" promptText="Ej: 3"
+                   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Estado:" GridPane.rowIndex="3" GridPane.columnIndex="0"
+               style="-fx-font-size: 13px;"/>
+        <ComboBox fx:id="comboEstado" prefWidth="250"
+                  GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Campos específicos según tipo -->
+    <VBox fx:id="camposEspecificos" spacing="10"/>
+
+    <!-- Botones -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancelar"
+                onAction="#cancelar"
+                style="-fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+        <Button text="Guardar evento"
+                onAction="#guardarEvento"
+                style="-fx-background-color: #185FA5; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+</VBox>

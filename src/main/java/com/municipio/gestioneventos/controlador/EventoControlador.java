@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EventoControlador {
 
-    private GestorEventos gestor = new GestorEventos();
+    private GestorEventos gestor =  GestorEventos.getInstancia();
 
     // CREAR evento
     @FXML

@@ -7,8 +7,11 @@
       fx:controller="com.municipio.gestioneventos.controlador.EventosControlador"
       spacing="16" style="-fx-padding: 0;">
 
-    <!-- Barra de búsqueda -->
+    <!-- Barra de acciones -->
     <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="+ Nuevo Evento"
+                onAction="#nuevoEvento"
+                style="-fx-background-color: #185FA5; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
         <TextField fx:id="campoBusqueda"
                    promptText="Buscar evento..."
                    style="-fx-font-size: 13px;"
