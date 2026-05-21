@@ -23,10 +23,10 @@ public class NuevoEventoControlador {
         comboTipo.setItems(FXCollections.observableArrayList(
                 "Feria", "Concierto", "Exposicion", "Taller", "Ciclo de Cine"
         ));
-        comboEstado.setItems(FXCollections.observableArrayList(
-                "En planificación", "Confirmado", "En ejecución", "Finalizado"
-        ));
+        comboEstado.setVisible(false);
     }
+
+
 
     @FXML
     public void mostrarCamposEspecificos() {
@@ -93,14 +93,32 @@ public class NuevoEventoControlador {
     public void guardarEvento() {
         String tipo = comboTipo.getSelectionModel().getSelectedItem();
         String nombre = campoNombre.getText();
-        String estado = comboEstado.getSelectionModel().getSelectedItem();
 
-        if (tipo == null || nombre.isEmpty() || estado == null || campoFecha.getValue() == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Campos incompletos");
-            alert.setContentText("Por favor completá todos los campos obligatorios.");
-            alert.showAndWait();
+        if(tipo == null) {
+            mostrarAlerta("Falta el tipo de evento", "Por favor seleccioná el tipo de evento.");
             return;
+
+        }
+        if (nombre.isEmpty()) {
+            mostrarAlerta("Falta el nombre", "Por favor ingresá el nombre del evento.");
+            return;
+        }
+        if (campoFecha.getValue() == null) {
+            mostrarAlerta("Falta la fecha", "Por favor seleccioná la fecha de inicio.");
+            return;
+        }
+
+        if (!campoDuracion.getText().isEmpty()) {
+            try {
+                int duracion = Integer.parseInt(campoDuracion.getText());
+                if (duracion <= 0) {
+                    mostrarAlerta("Duración inválida", "La duración debe ser un número mayor a 0.");
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                mostrarAlerta("Duración inválida", "La duración debe ser un número entero.");
+                return;
+            }
         }
 
         Evento evento = switch (tipo) {
@@ -115,7 +133,6 @@ public class NuevoEventoControlador {
         if (evento != null) {
             evento.setNombre(nombre);
             evento.setFechaInicio(campoFecha.getValue());
-            evento.setEstado(estado);
             evento.setDuracionEstimada(
                     campoDuracion.getText().isEmpty() ? 1 :
                             Integer.parseInt(campoDuracion.getText())
@@ -124,10 +141,23 @@ public class NuevoEventoControlador {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Éxito");
-            alert.setContentText("Evento guardado correctamente.");
+            alert.setContentText("Evento '" + nombre + "' guardado correctamente.");
             alert.showAndWait();
+
+            cancelar();
         }
     }
+
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setHeaderText(titulo);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+
+
 
     @FXML
     public void cancelar() {

@@ -42,14 +42,32 @@ public abstract class Evento {
     )
     private List<Participante> participantes = new ArrayList<>();
 
-    public Evento() {}
+    public Evento() {
+        this.estado = "En Planificación";
+    }
 
     public void cambiarEstado(String nuevoEstado) {
+        switch (this.estado) {
+            case "En planificación" -> {
+                if (!nuevoEstado.equals("Confirmado"))
+                    throw new IllegalStateException("Solo podés pasar a Confirmado");
+            }
+            case "Confirmado" -> {
+                if (!nuevoEstado.equals("En ejecución"))
+                    throw new IllegalStateException("Solo podés pasar a En ejecución");
+            }
+            case "En ejecución" -> {
+                if (!nuevoEstado.equals("Finalizado"))
+                    throw new IllegalStateException("Solo podés pasar a Finalizado");
+            }
+            case "Finalizado" ->
+                    throw new IllegalStateException("El evento ya está finalizado");
+        }
         this.estado = nuevoEstado;
     }
 
     public boolean registrarParticipante(Participante p) {
-        if (!this.estado.equals("confirmado")) {
+        if (!this.estado.equals("Confirmado")) {
             return false;
         }
         participantes.add(p);
@@ -60,7 +78,6 @@ public abstract class Evento {
         return participantes;
     }
 
-    // Getters y Setters
     public Long getId() { return id; }
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
