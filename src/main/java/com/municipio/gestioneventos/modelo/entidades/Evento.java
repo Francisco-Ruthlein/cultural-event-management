@@ -82,7 +82,12 @@ public abstract class Evento {
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
     public LocalDate getFechaInicio() { return fechaInicio; }
-    public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio; }
+    public void setFechaInicio(LocalDate fechaInicio) {
+        if (fechaInicio != null && fechaInicio.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Error: La fecha de inicio no puede ser en el pasado.");
+        }
+        this.fechaInicio = fechaInicio;
+    }
     public int getDuracionEstimada() { return duracionEstimada; }
     public void setDuracionEstimada(int duracionEstimada) { this.duracionEstimada = duracionEstimada; }
     public String getEstado() { return estado; }

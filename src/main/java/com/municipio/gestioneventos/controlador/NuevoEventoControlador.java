@@ -131,20 +131,57 @@ public class NuevoEventoControlador {
         };
 
         if (evento != null) {
-            evento.setNombre(nombre);
-            evento.setFechaInicio(campoFecha.getValue());
-            evento.setDuracionEstimada(
-                    campoDuracion.getText().isEmpty() ? 1 :
-                            Integer.parseInt(campoDuracion.getText())
-            );
-            gestor.guardar(evento);
+            try {
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Éxito");
-            alert.setContentText("Evento '" + nombre + "' guardado correctamente.");
-            alert.showAndWait();
+                evento.setNombre(nombre);
+                evento.setFechaInicio(campoFecha.getValue());
+                evento.setDuracionEstimada(
+                        campoDuracion.getText().isEmpty() ? 1 :
+                                Integer.parseInt(campoDuracion.getText())
+                );
 
-            cancelar();
+
+                if (evento instanceof Feria) {
+                    Feria miFeria = (Feria) evento;
+
+
+                    TextField campoStands = (TextField) camposEspecificos.lookup("#campoStands");
+                    CheckBox checkTechada = (CheckBox) camposEspecificos.lookup("#checkTechada");
+
+
+                    if (campoStands != null && !campoStands.getText().isEmpty()) {
+                        miFeria.setCantidadStands(Integer.parseInt(campoStands.getText()));
+                    } else {
+                        throw new IllegalArgumentException("La cantidad de stands es obligatoria para una Feria.");
+                    }
+
+
+                    if (checkTechada != null) {
+                        miFeria.setEsTechada(checkTechada.isSelected());
+                    }
+                }
+
+
+
+                gestor.guardar(evento);
+
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Éxito");
+                alert.setContentText("Evento '" + nombre + "' guardado correctamente.");
+                alert.showAndWait();
+
+                cancelar();
+
+            } catch (NumberFormatException e) {
+
+                mostrarAlerta("Error de Formato", "Por favor, ingresá números válidos en los campos numéricos.");
+            } catch (IllegalArgumentException e) {
+
+                mostrarAlerta("Error de Validación", e.getMessage());
+            } catch (Exception e) {
+                mostrarAlerta("Error del Sistema", "Ocurrió un error al guardar: " + e.getMessage());
+            }
         }
     }
 

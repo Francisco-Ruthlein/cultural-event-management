@@ -15,7 +15,13 @@ public class Feria extends Evento {
     public Feria() {}
 
     public int getCantidadStands() { return cantidadStands; }
-    public void setCantidadStands(int cantidadStands) { this.cantidadStands = cantidadStands; }
+    public void setCantidadStands(int cantidadStands) {
+
+        if (cantidadStands <= 0) {
+            throw new IllegalArgumentException("Error: La cantidad de stands de la feria debe ser mayor a 0.");
+        }
+        this.cantidadStands = cantidadStands;
+    }
     public boolean isEsTechada() { return esTechada; }
     public void setEsTechada(boolean esTechada) { this.esTechada = esTechada; }
 }
