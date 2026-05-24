@@ -34,7 +34,26 @@ public class InscripcionesControlador {
 
         comboEventos.setItems(
                 FXCollections.observableArrayList(gestor.listarEventos()));
+
+        comboEventos.setCellFactory(lv -> new ListCell<Evento>() {
+            @Override
+            protected void updateItem(Evento evento, boolean empty) {
+                super.updateItem(evento, empty);
+                setText(empty || evento == null ? null : evento.getNombre());
+            }
+        });
+
+        comboEventos.setButtonCell(new ListCell<Evento>() {
+            @Override
+            protected void updateItem(Evento evento, boolean empty) {
+                super.updateItem(evento, empty);
+                setText(empty || evento == null ? null : evento.getNombre());
+            }
+        });
     }
+
+
+
 
     @FXML
     public void cargarParticipantes() {

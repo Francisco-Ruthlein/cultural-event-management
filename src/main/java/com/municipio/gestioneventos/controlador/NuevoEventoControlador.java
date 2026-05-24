@@ -103,9 +103,14 @@ public class NuevoEventoControlador {
             mostrarAlerta("Falta el nombre", "Por favor ingresá el nombre del evento.");
             return;
         }
-        if (campoFecha.getValue() == null) {
-            mostrarAlerta("Falta la fecha", "Por favor seleccioná la fecha de inicio.");
+        if (nombre.matches("[0-9]+")) {
+            mostrarAlerta("Nombre inválido", "El nombre no puede ser solo números. Ejemplo válido: 'Festival 2026'.");
             return;
+        }
+        if (nombre.trim().length() < 3) {
+            mostrarAlerta("Nombre inválido", "El nombre debe tener al menos 3 caracteres.");
+            return;
+
         }
 
         if (!campoDuracion.getText().isEmpty()) {
