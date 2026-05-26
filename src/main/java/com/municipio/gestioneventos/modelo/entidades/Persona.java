@@ -41,6 +41,10 @@ public abstract class Persona {
             throw new IllegalArgumentException("El nombre completo es obligatorio.");
         if (nombre.trim().length() < 3)
             throw new IllegalArgumentException("El nombre debe tener al menos 3 caracteres.");
+        if (nombre.matches("[0-9]+"))
+            throw new IllegalArgumentException("El nombre no puede contener solo números. Ej: Juan Pérez");
+        if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]+"))
+            throw new IllegalArgumentException("El nombre solo puede contener letras y espacios. Ej: Juan Pérez");
     }
 
     public static void validarDni(String dni) {
@@ -62,6 +66,10 @@ public abstract class Persona {
             throw new IllegalArgumentException("El teléfono es obligatorio.");
         if (!telefono.matches("[+\\d]+"))
             throw new IllegalArgumentException("El teléfono debe contener solo números. Puede comenzar con +. Ej: +5493764123456");
+        if (telefono.replaceAll("[+]", "").length() > 15)
+            throw new IllegalArgumentException("El teléfono no puede tener más de 15 dígitos.");
+        if (telefono.replaceAll("[+]", "").length() < 7)
+            throw new IllegalArgumentException("El teléfono debe tener al menos 7 dígitos.");
     }
 
     public String obtenerDatosContacto() {
