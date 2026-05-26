@@ -12,7 +12,7 @@ public class GestorEventos {
     private EntityManager em;
 
     private GestorEventos() {
-        emf = Persistence.createEntityManagerFactory("gestion-eventos-pu");
+        emf = Persistence.createEntityManagerFactory("GestionEventosPU");
         em = emf.createEntityManager();
     }
 
@@ -31,6 +31,13 @@ public class GestorEventos {
 
     public List<Evento> listarEventos() {
         return em.createQuery("SELECT e FROM Evento e", Evento.class).getResultList();
+    }
+
+    public List<Evento> buscarEventosPorNombre(String texto) {
+        return em.createQuery(
+                        "SELECT e FROM Evento e WHERE LOWER(e.nombre) LIKE :texto", Evento.class)
+                .setParameter("texto", "%" + texto.toLowerCase() + "%")
+                .getResultList();
     }
 
     public List<Persona> listarPersonas() {

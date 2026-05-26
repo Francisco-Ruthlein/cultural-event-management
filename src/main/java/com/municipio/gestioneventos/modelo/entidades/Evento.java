@@ -43,25 +43,27 @@ public abstract class Evento {
     private List<Participante> participantes = new ArrayList<>();
 
     public Evento() {
-        this.estado = "En Planificación";
+        this.estado = "En planificación";  // todo minúscula
     }
 
     public void cambiarEstado(String nuevoEstado) {
         switch (this.estado) {
             case "En planificación" -> {
                 if (!nuevoEstado.equals("Confirmado"))
-                    throw new IllegalStateException("Solo podés pasar a Confirmado");
+                    throw new IllegalStateException("Solo podés pasar a Confirmado.");
             }
             case "Confirmado" -> {
                 if (!nuevoEstado.equals("En ejecución"))
-                    throw new IllegalStateException("Solo podés pasar a En ejecución");
+                    throw new IllegalStateException("Solo podés pasar a En ejecución.");
             }
             case "En ejecución" -> {
                 if (!nuevoEstado.equals("Finalizado"))
-                    throw new IllegalStateException("Solo podés pasar a Finalizado");
+                    throw new IllegalStateException("Solo podés pasar a Finalizado.");
             }
             case "Finalizado" ->
-                    throw new IllegalStateException("El evento ya está finalizado");
+                    throw new IllegalStateException("El evento ya está finalizado.");
+            default ->
+                    throw new IllegalStateException("Estado desconocido: " + this.estado);
         }
         this.estado = nuevoEstado;
     }
