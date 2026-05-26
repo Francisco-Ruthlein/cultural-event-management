@@ -146,24 +146,45 @@ public class NuevoEventoControlador {
                 );
 
 
-                if (evento instanceof Feria) {
-                    Feria miFeria = (Feria) evento;
-
-
+                if (evento instanceof Feria miFeria) {
                     TextField campoStands = (TextField) camposEspecificos.lookup("#campoStands");
                     CheckBox checkTechada = (CheckBox) camposEspecificos.lookup("#checkTechada");
-
-
-                    if (campoStands != null && !campoStands.getText().isEmpty()) {
-                        miFeria.setCantidadStands(Integer.parseInt(campoStands.getText()));
-                    } else {
+                    if (campoStands == null || campoStands.getText().isEmpty()) {
                         throw new IllegalArgumentException("La cantidad de stands es obligatoria para una Feria.");
                     }
+                    miFeria.setCantidadStands(Integer.parseInt(campoStands.getText()));
+                    if (checkTechada != null) miFeria.setEsTechada(checkTechada.isSelected());
 
-
-                    if (checkTechada != null) {
-                        miFeria.setEsTechada(checkTechada.isSelected());
+                } else if (evento instanceof Taller miTaller) {
+                    TextField campoCupo      = (TextField) camposEspecificos.lookup("#campoCupo");
+                    TextField campoModalidad = (TextField) camposEspecificos.lookup("#campoModalidad");
+                    if (campoCupo == null || campoCupo.getText().isEmpty()) {
+                        throw new IllegalArgumentException("El cupo máximo es obligatorio para un Taller.");
                     }
+                    int cupo = Integer.parseInt(campoCupo.getText().trim());
+                    if (cupo <= 0) throw new IllegalArgumentException("El cupo máximo debe ser mayor a 0.");
+                    miTaller.setCupoMaximo(cupo);
+                    if (campoModalidad != null && !campoModalidad.getText().isEmpty()) {
+                        miTaller.setModalidad(campoModalidad.getText().trim());
+                    }
+
+                } else if (evento instanceof Concierto miConcierto) {
+                    CheckBox checkGratuita = (CheckBox) camposEspecificos.lookup("#checkGratuita");
+                    if (checkGratuita != null) miConcierto.setEsEntradaGratuita(checkGratuita.isSelected());
+
+                } else if (evento instanceof Exposicion miExposicion) {
+                    TextField campoTipoArte = (TextField) camposEspecificos.lookup("#campoTipoArte");
+                    if (campoTipoArte != null && !campoTipoArte.getText().isEmpty()) {
+                        miExposicion.setTipoArte(campoTipoArte.getText().trim());
+                    }
+
+                } else if (evento instanceof CicloDeCine miCiclo) {
+                    TextField campoOrden = (TextField) camposEspecificos.lookup("#campoOrden");
+                    CheckBox checkCharla = (CheckBox) camposEspecificos.lookup("#checkCharla");
+                    if (campoOrden != null && !campoOrden.getText().isEmpty()) {
+                        miCiclo.setOrdenProyeccion(campoOrden.getText().trim());
+                    }
+                    if (checkCharla != null) miCiclo.setTieneCharlaPosterior(checkCharla.isSelected());
                 }
 
 

@@ -18,4 +18,9 @@ public class Participante extends Persona {
     }
 
     public List<Evento> getHistorialEventos() { return historialEventos; }
+
+    @Override
+    public String toString() {
+        return getNombreCompleto() + " (DNI: " + getDni() + ")";
+    }
 }

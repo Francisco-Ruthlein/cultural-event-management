@@ -80,4 +80,8 @@ public class GestorEventos {
         em.close();
         emf.close();
     }
+
+    public Evento buscarPorId(Long id) {
+        return em.find(Evento.class, id);
+    }
 }

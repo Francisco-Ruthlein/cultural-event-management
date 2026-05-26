@@ -1,6 +1,7 @@
 package com.municipio.gestioneventos.modelo.entidades;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "talleres")
@@ -19,13 +20,17 @@ public class Taller extends Evento {
 
     @Override
     public boolean registrarParticipante(Participante p) {
-        if (!getEstado().equals("confirmado")) {
+        if (!getEstado().equals("Confirmado")) {
             return false;
         }
-        if (listarParticipantes().size() >= cupoMaximo) {
+        List<Participante> lista = getParticipantes();
+        if (cupoMaximo > 0 && lista.size() >= cupoMaximo) {
             return false;
         }
-        listarParticipantes().add(p);
+        if (lista.contains(p)) {
+            return false; // evitar duplicados
+        }
+        lista.add(p);
         return true;
     }
 

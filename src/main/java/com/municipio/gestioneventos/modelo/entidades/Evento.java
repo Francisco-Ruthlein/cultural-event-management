@@ -43,7 +43,7 @@ public abstract class Evento {
     private List<Participante> participantes = new ArrayList<>();
 
     public Evento() {
-        this.estado = "En planificación";  // todo minúscula
+        this.estado = "En planificación";
     }
 
     public void cambiarEstado(String nuevoEstado) {
