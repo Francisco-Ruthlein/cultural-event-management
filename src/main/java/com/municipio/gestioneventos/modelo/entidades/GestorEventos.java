@@ -68,6 +68,14 @@ public class GestorEventos {
         return em.find(Evento.class, id);
     }
 
+    public List<Persona> buscarPersonasPorNombre(String texto) {
+        return em.createQuery(
+                        "SELECT p FROM Persona p WHERE LOWER(p.nombreCompleto) LIKE :texto OR p.dni LIKE :texto",
+                        Persona.class)
+                .setParameter("texto", "%" + texto.toLowerCase() + "%")
+                .getResultList();
+    }
+
     public void cerrar() {
         em.close();
         emf.close();
