@@ -35,6 +35,10 @@ public class MainControlador {
 
     @FXML
     private GestorEventos gestor = GestorEventos.getInstancia();
+    @FXML
+    public void initialize() {
+        mostrarInicio();
+    }
     public void mostrarInicio() {
         marcarActivo(btnInicio);
         headerTitulo.setText("Panel principal");
