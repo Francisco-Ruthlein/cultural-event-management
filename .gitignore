@@ -38,3 +38,6 @@ build/
 ### Mac OS ###
 .DS_Store
 src/main/resources/META-INF/persistence.xml
+echo "target/" >> .gitignore
+echo ".idea/" >> .gitignore
+echo "*.iml" >> .gitignore
