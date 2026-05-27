@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.municipio.gestioneventos.controlador.InscripcionesControlador"
+      spacing="16" style="-fx-padding: 0;">
+
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Evento:"
+               style="-fx-font-size: 13px;"/>
+        <ComboBox fx:id="comboEventos"
+                  promptText="Seleccioná un evento"
+                  prefWidth="250"
+                  onAction="#cargarParticipantes"/>
+    </HBox>
+
+
+    <TableView fx:id="tablaParticipantes" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colNombre" text="Nombre completo" prefWidth="200"/>
+            <TableColumn fx:id="colDni" text="DNI" prefWidth="100"/>
+            <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+            <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="120"/>
+        </columns>
+    </TableView>
+
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="+ Inscribir participante"
+                onAction="#inscribirParticipante"
+                style="-fx-background-color: #185FA5; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+        <Button text="Dar de baja"
+                onAction="#darDeBaja"
+                style="-fx-background-color: #E24B4A; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+</VBox>

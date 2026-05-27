@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.municipio.gestioneventos.controlador.MainControlador"
+            prefWidth="900" prefHeight="600">
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox style="-fx-background-color: #185FA5; -fx-min-width: 220px;">
+
+            <!-- Header del sidebar -->
+            <VBox style="-fx-padding: 20 16 20 16; -fx-border-color: rgba(255,255,255,0.15); -fx-border-width: 0 0 1 0;">
+                <Label text="Municipalidad"
+                       style="-fx-text-fill: rgba(255,255,255,0.6); -fx-font-size: 12px;"/>
+                <Label text="Gestión de Eventos"
+                       style="-fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold;"/>
+            </VBox>
+
+            <!-- Navegación -->
+            <VBox style="-fx-padding: 12 8 12 8;" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnInicio" text="⊞  Inicio"
+                        maxWidth="Infinity"
+                        onAction="#mostrarInicio"
+                        style="-fx-background-color: rgba(255,255,255,0.15); -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 10 12; -fx-background-radius: 6; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
+                <Button fx:id="btnEventos" text="📅  Eventos"
+                        maxWidth="Infinity"
+                        onAction="#mostrarEventos"
+                        style="-fx-background-color: transparent; -fx-text-fill: rgba(255,255,255,0.7); -fx-font-size: 13px; -fx-padding: 10 12; -fx-background-radius: 6; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
+                <Button fx:id="btnPersonas" text="👥  Personas"
+                        maxWidth="Infinity"
+                        onAction="#mostrarPersonas"
+                        style="-fx-background-color: transparent; -fx-text-fill: rgba(255,255,255,0.7); -fx-font-size: 13px; -fx-padding: 10 12; -fx-background-radius: 6; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
+                <Button fx:id="btnInscripciones" text="🎫  Inscripciones"
+                        maxWidth="Infinity"
+                        onAction="#mostrarInscripciones"
+                        style="-fx-background-color: transparent; -fx-text-fill: rgba(255,255,255,0.7); -fx-font-size: 13px; -fx-padding: 10 12; -fx-background-radius: 6; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
+                <Button fx:id="btnCalendario" text="📆  Calendario"
+                        maxWidth="Infinity"
+                        onAction="#mostrarCalendario"
+                        style="-fx-background-color: transparent; -fx-text-fill: rgba(255,255,255,0.7); -fx-font-size: 13px; -fx-padding: 10 12; -fx-background-radius: 6; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;"/>
+            </VBox>
+
+        </VBox>
+    </left>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <center>
+        <VBox>
+
+            <!-- Header -->
+            <HBox style="-fx-background-color: white; -fx-padding: 14 24; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;"
+                  alignment="CENTER_LEFT">
+                <VBox HBox.hgrow="ALWAYS">
+                    <Label fx:id="headerTitulo" text="Panel principal"
+                           style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                    <Label fx:id="headerSubtitulo" text="Resumen general del sistema"
+                           style="-fx-text-fill: gray; -fx-font-size: 13px;"/>
+                </VBox>
+                <Button text="+ Nuevo Evento"
+                        onAction="#nuevoEvento"
+                        style="-fx-background-color: #185FA5; -fx-text-fill: white; -fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+            </HBox>
+
+            <!-- Área de contenido dinámica -->
+            <StackPane fx:id="contenidoCentral" VBox.vgrow="ALWAYS"
+                       style="-fx-background-color: #f5f5f5; -fx-padding: 20 24;">
+                <Label text="Seleccioná una sección del menú"
+                       style="-fx-text-fill: gray; -fx-font-size: 14px;"/>
+            </StackPane>
+
+        </VBox>
+    </center>
+
+</BorderPane>

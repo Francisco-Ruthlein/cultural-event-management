@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.municipio.gestioneventos.controlador.CalendarioControlador"
+      spacing="16" style="-fx-padding: 0;">
+
+    <!-- Filtros -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Mes:"
+               style="-fx-font-size: 13px;"/>
+        <ComboBox fx:id="comboMes"
+                  promptText="Seleccioná un mes"
+                  prefWidth="150"
+                  onAction="#filtrarPorMes"/>
+        <Label text="Estado:"
+               style="-fx-font-size: 13px;"/>
+        <ComboBox fx:id="comboEstado"
+                  promptText="Todos"
+                  prefWidth="150"
+                  onAction="#filtrarPorEstado"/>
+        <Button text="Ver todos"
+                onAction="#verTodos"
+                style="-fx-font-size: 13px; -fx-padding: 7 14; -fx-background-radius: 6; -fx-cursor: hand;"/>
+    </HBox>
+
+    <!-- Tabla calendario -->
+    <TableView fx:id="tablaCalendario" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colFecha" text="Fecha" prefWidth="120"/>
+            <TableColumn fx:id="colNombre" text="Evento" prefWidth="200"/>
+            <TableColumn fx:id="colTipo" text="Tipo" prefWidth="120"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
+            <TableColumn fx:id="colDuracion" text="Duración (días)" prefWidth="120"/>
+        </columns>
+    </TableView>
+
+</VBox>
